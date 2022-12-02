@@ -1,5 +1,5 @@
 def main():
-    f = open("input", "r")
+    f = open("day1\input", "r")
     index: int = 0
     elves: list[int] = [0] 
 
