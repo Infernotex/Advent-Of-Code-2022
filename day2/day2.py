@@ -6,6 +6,7 @@ def shape_to_value(shape: str) -> int:
     else:
         return 3
 
+
 def rpc(hand1: int, hand2: int) -> int:
     if hand1 == 1:
         if hand2 == 1:
@@ -14,7 +15,7 @@ def rpc(hand1: int, hand2: int) -> int:
             return 6
         else:
             return 0
-    
+
     elif hand1 == 2:
         if hand2 == 1:
             return 0
@@ -31,6 +32,7 @@ def rpc(hand1: int, hand2: int) -> int:
         else:
             return 3
 
+
 def outcome_to_hand(hand1: int, outcome: int) -> int:
     if outcome == 1:
         if hand1 == 1:
@@ -39,10 +41,10 @@ def outcome_to_hand(hand1: int, outcome: int) -> int:
             return 1
         else:
             return 2
-    
+
     elif outcome == 2:
         return hand1
-    
+
     else:
         if hand1 == 1:
             return 2
@@ -53,10 +55,11 @@ def outcome_to_hand(hand1: int, outcome: int) -> int:
 
 
 def main():
-    f = open("day2\input", "r")
+    f = open("input", "r")
     score1: int = 0
     score2: int = 0
 
+    row: str
     for row in f:
         hand1: int = shape_to_value(row[0])
         hand2: int = shape_to_value(row[2])
@@ -64,9 +67,12 @@ def main():
 
         hand2 = outcome_to_hand(hand1, hand2)
         score2 += rpc(hand1, hand2) + hand2
-        
+
+    f.close()
+
     print(score1)
     print(score2)
+
 
 if __name__ == "__main__":
     main()
