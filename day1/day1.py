@@ -1,11 +1,11 @@
-def main():
+def main() -> None:
     f = open("input", "r")
     index: int = 0
     elves: list[int] = [0]
 
     calories: str
     for calories in f:
-        if calories != "" and calories != "\n":
+        if calories != "\n":
             elves[index] += int(calories)
         else:
             index += 1

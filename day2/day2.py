@@ -54,7 +54,7 @@ def outcome_to_hand(hand1: int, outcome: int) -> int:
             return 1
 
 
-def main():
+def main() -> None:
     f = open("input", "r")
     score1: int = 0
     score2: int = 0

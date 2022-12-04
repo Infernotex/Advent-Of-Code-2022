@@ -6,7 +6,7 @@ def letter_to_value(letter: str) -> int:
         return value - 96
 
 
-def main():
+def main() -> None:
     f = open("input", "r")
     rucksacks: list[str] = []
     priority_sum: int = 0
