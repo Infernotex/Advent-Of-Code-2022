@@ -10,6 +10,7 @@ def find_dash(pair: str) -> int:
             return i
 
 
+# TODO use split
 def main() -> None:
     f = open("input", "r")
     subsets: int = 0
