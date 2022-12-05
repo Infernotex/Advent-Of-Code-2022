@@ -1,41 +1,28 @@
-def find_comma(pair: str) -> int:
-    for i in range(len(pair)):
-        if pair[i] == ",":
-            return i
-
-
-def find_dash(pair: str) -> int:
-    for i in range(len(pair)):
-        if pair[i] == "-":
-            return i
-
-
-# TODO use split
 def main() -> None:
     f = open("input", "r")
     subsets: int = 0
     intersections: int = 0
 
-    pair: str
-    for pair in f:
-        comma_index: int = find_comma(pair)
+    line: str
+    for line in f:
+        pair: list[str] = line.split(",")
 
-        # first_index is 0
-        first_dash: int = find_dash(pair)
-        first_start: int = int(pair[:first_dash])
-        first_end: int = int(pair[first_dash + 1: comma_index])
-        first: set[int] = set(range(first_start, first_end + 1))
+        left: str = pair[0]
+        first: list[str] = left.split("-")
+        first_start: int = int(first[0])
+        first_end: int = int(first[1])
+        first_set: set[int] = set(range(first_start, first_end + 1))
 
-        second_index: int = comma_index + 1
-        second_dash: int = second_index + find_dash(pair[second_index:])
-        second_start: int = int(pair[second_index:second_dash])
-        second_end: int = int(pair[second_dash + 1: -1])
-        second: set[int] = set(range(second_start, second_end + 1))
+        right: str = pair[1]
+        second: list[str] = right.split("-")
+        second_start: int = int(second[0])
+        second_end: int = int(second[1])
+        second_set: set[int] = set(range(second_start, second_end + 1))
 
-        if first.issubset(second) or second.issubset(first):
+        if first_set.issubset(second_set) or second_set.issubset(first_set):
             subsets += 1
 
-        if first.intersection(second) != set():
+        if first_set.intersection(second_set) != set():
             intersections += 1
 
     f.close()
