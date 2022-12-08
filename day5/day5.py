@@ -54,7 +54,7 @@ def main() -> None:
 
     i: int
     for i in range(len(stack_matrix)):
-        top_crates += stack_matrix[i].pop()
+        top_crates += stack_matrix[i][-1]
 
     print(top_crates)
 
