@@ -55,23 +55,21 @@ def outcome_to_hand(hand1: int, outcome: int) -> int:
 
 
 def main() -> None:
-    f = open("input", "r")
-    score1: int = 0
-    score2: int = 0
+    with open("input", "r") as f:
+        score1: int = 0
+        score2: int = 0
 
-    row: str
-    for row in f:
-        hand1: int = shape_to_value(row[0])
-        hand2: int = shape_to_value(row[2])
-        score1 += rpc(hand1, hand2) + hand2
+        row: str
+        for row in f:
+            hand1: int = shape_to_value(row[0])
+            hand2: int = shape_to_value(row[2])
+            score1 += rpc(hand1, hand2) + hand2
 
-        hand2 = outcome_to_hand(hand1, hand2)
-        score2 += rpc(hand1, hand2) + hand2
+            hand2 = outcome_to_hand(hand1, hand2)
+            score2 += rpc(hand1, hand2) + hand2
 
-    f.close()
-
-    print(score1)
-    print(score2)
+        print(score1)
+        print(score2)
 
 
 if __name__ == "__main__":

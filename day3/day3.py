@@ -10,37 +10,35 @@ def letter_to_value(letter: str) -> int:
 
 
 def main() -> None:
-    f = open("input", "r")
-    rucksacks: list[str] = []
-    priority_sum: int = 0
-    badge_sum: int = 0
+    with open("input", "r") as f:
+        rucksacks: list[str] = []
+        priority_sum: int = 0
+        badge_sum: int = 0
 
-    rucksack: str
-    for rucksack in f:
-        rucksacks.append(rucksack[: -1])
+        rucksack: str
+        for rucksack in f:
+            rucksacks.append(rucksack.strip())
 
-        cutoff_index: int = (len(rucksack) - 1) // 2
+            cutoff_index: int = (len(rucksack) - 1) // 2
+
+            i: int
+            for i in range(cutoff_index):
+                if rucksack[i] in rucksack[cutoff_index:]:
+                    priority_sum += letter_to_value(rucksack[i])
+                    break
 
         i: int
-        for i in range(cutoff_index):
-            if rucksack[i] in rucksack[cutoff_index:]:
-                priority_sum += letter_to_value(rucksack[i])
-                break
+        for i in range(2, len(rucksacks), 3):
+            j: int = i - 1
+            k: int = i - 2
 
-    f.close()
+            for letter in rucksacks[i]:
+                if letter in rucksacks[j] and letter in rucksacks[k]:
+                    badge_sum += letter_to_value(letter)
+                    break
 
-    i: int
-    for i in range(2, len(rucksacks), 3):
-        j: int = i - 1
-        k: int = i - 2
-
-        for letter in rucksacks[i]:
-            if letter in rucksacks[j] and letter in rucksacks[k]:
-                badge_sum += letter_to_value(letter)
-                break
-
-    print(priority_sum)
-    print(badge_sum)
+        print(priority_sum)
+        print(badge_sum)
 
 
 if __name__ == "__main__":
