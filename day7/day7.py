@@ -6,7 +6,7 @@ def main() -> None:
 
         line: str
         for line in f:
-            instructions: list[str] = line.strip().split()
+            instructions: list[str] = line.split()
 
             if instructions[-1] == "/":
                 directory_stack.append("/")
